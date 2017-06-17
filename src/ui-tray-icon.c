@@ -267,7 +267,7 @@ vol_meter_draw(VolMeter *vol_meter, GdkPixbuf *pixbuf, int volume)
 	g_assert(x >= 0 && x + vm_width <= icon_width);
 
 	y = vol_meter->y_offset_pct * icon_height / 100;
-	vm_height = (icon_height - (y * 2)) * (volume / 100.0);
+	vm_height = (icon_height - (y * 2)) * (fminf(volume, 100.0) / 100.0);
 	g_assert(y >= 0 && y + vm_height <= icon_height);
 
 	/* Let's check if the icon width changed, in which case we
